@@ -15,10 +15,6 @@ function LoginPage(props) {
         setSubmitted(true);
 
         if (username && password) {
-            console.log('submitted form', submitted);
-            console.log('username', username);
-            console.log('password', password);
-
             props.login(username, password);
         }
     }
@@ -39,6 +35,9 @@ function LoginPage(props) {
                     <input type="submit" name="submut" value="Submit"></input>
                 </div>
             </form>
+            {
+                props.loggingIn && <p>Loading</p>
+            }
         </React.Fragment>
     )
 }

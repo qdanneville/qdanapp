@@ -10,9 +10,8 @@ function login(username, password) {
     //     headers: { 'Content-Type': 'application/json' },
     //     body: JSON.stringify({ username, password })
     // }
-
+    
     // Simulating a back
-
     console.log(username, password);
 
 

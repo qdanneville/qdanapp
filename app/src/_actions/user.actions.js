@@ -12,6 +12,7 @@ function login(username, password) {
         .then(
             user => {
                 console.log(user);
+                dispatch(success(user));
             },
             error => {
                 console.error('no user found', error)
@@ -20,4 +21,5 @@ function login(username, password) {
     };
 
     function request(user) { return { type: 'USERS_LOGIN_REQUEST', user } }
+    function success(user) { return { type: 'USERS_LOGIN_SUCCESS', user } }
 }
