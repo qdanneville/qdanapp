@@ -13,6 +13,10 @@ export function authentication(state = initialState, action) {
                 loggedIn: true,
                 user: action.user
             };
+        case 'USERS_LOGIN_FAILURE':
+            return {
+                loggingError: action.error
+            };
         default:
             return state
     }

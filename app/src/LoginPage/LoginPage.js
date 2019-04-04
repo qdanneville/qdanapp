@@ -19,6 +19,8 @@ function LoginPage(props) {
         }
     }
 
+    console.log(localStorage);
+
     return (
         <React.Fragment>
             <h1>Login Page</h1>
@@ -38,15 +40,23 @@ function LoginPage(props) {
             {
                 props.loggingIn && <p>Loading</p>
             }
+            {
+                props.user && props.user.firstname
+            }
+            {
+                props.loggingError && props.loggingError
+            }
         </React.Fragment>
     )
 }
 
 // STORE
 const mapStateToProps = state => {
-    const { loggingIn } = state.authentication
+    const { loggingIn, user, loggingError } = state.authentication
     return {
-        loggingIn
+        loggingError,
+        loggingIn,
+        user
     };
 };
 

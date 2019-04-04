@@ -10,19 +10,22 @@ function login(username, password) {
     //     headers: { 'Content-Type': 'application/json' },
     //     body: JSON.stringify({ username, password })
     // }
-    
+
     // Simulating a back
-    console.log(username, password);
-
-
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         // mimic an async network request
         setTimeout(() => {
-            resolve(
-                users.find(user => {
-                    return user.firstname === username;
-                })
-            );
+            var userFound = users.find(user => {
+                return user.firstname === username;
+            });
+
+            if (userFound) {
+                resolve(userFound);
+                localStorage.setItem('user', JSON.stringify(userFound));
+            } else {
+                reject('Username or password is incorrect');
+            }
+
         }, 2000);
     });
     // return users.find(user => {
