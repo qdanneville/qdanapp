@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux'
 
 import { userActions } from '../_actions'
@@ -7,6 +7,10 @@ function LoginPage(props) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        props.logout();
+    }, []);
 
     function _handleSubmit(e) {
         e.preventDefault();
@@ -55,9 +59,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         login: (username, password) => dispatch(userActions.login(username, password)),
+        logout: () => dispatch(userActions.logout()),
     };
 };
 
-const LoginPageConnected = connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+const LoginPageConnected = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginPage)
 
 export { LoginPageConnected as LoginPage }
