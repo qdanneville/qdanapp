@@ -7,19 +7,14 @@ function LoginPage(props) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [submitted, setSubmitted] = useState(false);
 
     function _handleSubmit(e) {
         e.preventDefault();
-
-        setSubmitted(true);
 
         if (username && password) {
             props.login(username, password);
         }
     }
-
-    console.log(localStorage);
 
     return (
         <React.Fragment>
@@ -41,9 +36,6 @@ function LoginPage(props) {
                 props.loggingIn && <p>Loading</p>
             }
             {
-                props.user && props.user.firstname
-            }
-            {
                 props.loggingError && props.loggingError
             }
         </React.Fragment>
@@ -62,7 +54,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: (username, password) => dispatch(userActions.login(username ,password)),
+        login: (username, password) => dispatch(userActions.login(username, password)),
     };
 };
 

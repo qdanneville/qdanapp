@@ -17,6 +17,8 @@ export function authentication(state = initialState, action) {
             return {
                 loggingError: action.error
             };
+        case 'USERS_LOGOUT':
+            return {};
         default:
             return state
     }
