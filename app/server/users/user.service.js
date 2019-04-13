@@ -1,6 +1,6 @@
 ﻿const config = require("config.json");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 const db = require("_helpers/db");
 const User = db.User;
 
@@ -26,7 +26,12 @@ async function authenticate({ username, password }) {
     db.query(sql, (err, results) => {
       if (results.length) {
         let user = results[0];
-        resolve(user);
+        const token = jwt.sign({ sub: user.username }, config.secret);
+
+        resolve({
+          ...user,
+          token
+        });
       } else {
         reject(err);
       }
